@@ -12,6 +12,15 @@ const compat = new FlatCompat({
 });
 
 export default [
+  {
+    ignores: [
+      'node_modules',
+      'dist',
+      'build',
+      'public',
+      'src/app/_components/ui/**/*',
+    ],
+  },
   ...compat.extends(
     'next/core-web-vitals',
     'plugin:@typescript-eslint/recommended',
