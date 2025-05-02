@@ -1,36 +1,130 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js 15 Starter Kit
 
-## Getting Started
+A modern, feature-rich starter kit for Next.js 15 projects with TypeScript, ESLint, Prettier, and Husky setup.
 
-First, run the development server:
+## 🚀 Development
+
+### Prerequisites
+
+- Node.js (Latest LTS version recommended)
+- npm or yarn
+
+### Getting Started
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+3. Copy the environment file:
+   ```bash
+   cp .env.example .env
+   ```
+
+### Starting the Development Server
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The development server will start with Turbopack enabled for faster builds.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠 Code Quality Tools
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Available Commands
 
-## Learn More
+- `npm run dev` - Start development server with Turbopack
+- `npm run build` - Create production build
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run format` - Format code with Prettier
+- `npm run format:check` - Check code formatting
+- `npm run typecheck` - Run TypeScript type checking
 
-To learn more about Next.js, take a look at the following resources:
+### Automatic Checks
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The following checks run automatically before commits:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Type Checking**: Ensures TypeScript types are valid
+2. **Code Formatting**: Verifies code follows Prettier rules
+3. **Linting**: Runs ESLint on staged files
+4. **Commit Message Format**: Validates commit messages follow conventions
 
-## Deploy on Vercel
+### Code Style Guide
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### TypeScript/JavaScript
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+We use ESLint with the following configurations:
+
+- Next.js core web vitals
+- TypeScript recommended rules
+- React recommended rules
+- React Hooks rules
+- JSX accessibility rules
+- Prettier integration
+
+Key ESLint rules:
+
+- No unused variables (warning)
+- No explicit any (warning)
+- React in JSX scope not required
+- Props types validation not required
+
+### Git Workflow
+
+#### Commit Messages
+
+Format: `type(scope): Subject`
+
+Types:
+
+- `feat` - New features
+- `fix` - Bug fixes
+- `docs` - Documentation changes
+- `style` - Code style changes
+- `refactor` - Code refactoring
+- `perf` - Performance improvements
+- `test` - Adding/updating tests
+- `chore` - Maintenance tasks
+- `revert` - Reverting changes
+- `ci` - CI/CD changes
+- `build` - Build system changes
+- `deps` - Dependencies updates
+
+Rules:
+
+- Type must be lowercase
+- Scope must be kebab-case
+- Subject must be sentence-case
+- No period at the end of subject
+- Maximum line length: 100 characters
+
+Examples:
+
+```bash
+feat(auth): Add user authentication system
+fix(api): Resolve null response handling
+docs(readme): Update installation instructions
+```
+
+### Tooling Setup
+
+- **TypeScript**: Static type checking
+- **ESLint**: Code quality and style checking
+- **Prettier**: Code formatting
+- **Husky**: Git hooks
+- **lint-staged**: Run linters on git staged files
+- **commitlint**: Commit message linting
+- **TailwindCSS**: Utility-first CSS framework
+
+## 📝 License
+
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## 👏 Credits
+
+Created by [Rumeasiyan](https://github.com/rumeasiyan) - Next.js 15 Starter Kit
