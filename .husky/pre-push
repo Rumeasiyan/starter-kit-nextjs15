@@ -1,0 +1,5 @@
+# Run build to catch any errors
+npm run build
+
+# Uncomment when tests are added
+# npm run test

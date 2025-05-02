@@ -1,0 +1,82 @@
+name: PR Checks
+
+on:
+  pull_request:
+    branches:
+      - develop
+      - main
+  push:
+    branches:
+      - develop
+      - main
+
+env:
+  SKIP_ENV_VALIDATION: 1
+  AUTH_SECRET: dummy-secret-for-testing
+  EMAIL_SERVER_USER: dummy-user
+  EMAIL_SERVER_PASSWORD: dummy-password
+  EMAIL_SERVER_HOST: dummy.host.com
+  EMAIL_FROM: test@example.com
+  DATABASE_URL: postgresql://dummy:dummy@localhost:5432/dummy
+
+jobs:
+  validate:
+    name: Validate & Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      # Cache node_modules
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
+
+      # Cache Next.js build
+      - name: Cache Next.js build
+        uses: actions/cache@v4
+        with:
+          path: |
+            .next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Lint check
+        run: npm run lint
+
+      - name: Format check
+        run: npm run format:check
+
+      - name: Build
+        run: npm run build
+        env:
+          CI: true
+
+      # Optional: Add test step if you have tests
+      # - name: Test
+      #   run: npm run test
+      #   env:
+      #     CI: true
+
+      # Optional: Add E2E tests if you have them
+      # - name: E2E Tests
+      #   run: npm run test:e2e
+      #   env:
+      #     CI: true
