@@ -21,7 +21,7 @@ export function AuthLayout({
   return (
     <div className="grid min-h-screen md:grid-cols-2 lg:grid-cols-3">
       {showImage && (
-        <div className="hidden p-6 md:col-span-1 md:flex md:items-center md:justify-center lg:col-span-2">
+        <div className="p-6 md:col-span-1 md:flex md:items-center md:justify-center lg:col-span-2">
           <div className="h-full w-full overflow-hidden rounded-3xl shadow-xl">
             <TestimonialCarousel />
           </div>
