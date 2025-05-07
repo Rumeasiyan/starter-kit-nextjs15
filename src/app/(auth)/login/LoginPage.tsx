@@ -2,18 +2,22 @@ import { AuthLayout } from '@/app/_components/layouts/auth/AuthLayout';
 import { AppLogo } from '@/app/_components/icons/AppLogo';
 import { LoginForm } from '@/app/_components/features/auth/LoginForm';
 interface LoginProps {
+  handleLogin: () => void;
+  handleGoogleLogin: () => void;
+  handleGithubLogin: () => void;
   loginFormData: {
     email: string;
     password: string;
   };
   setLoginFormData: (formData: LoginProps['loginFormData']) => void;
-  handleLogin: () => void;
   isLoading: boolean;
   setIsLoading: (isLoading: boolean) => void;
 }
 
 export default function Login({
   handleLogin,
+  handleGoogleLogin,
+  handleGithubLogin,
   loginFormData,
   setLoginFormData,
   isLoading,
@@ -27,6 +31,8 @@ export default function Login({
     >
       <LoginForm
         handleSubmit={handleLogin}
+        handleGoogleLogin={handleGoogleLogin}
+        handleGithubLogin={handleGithubLogin}
         loginFormData={loginFormData}
         setLoginFormData={setLoginFormData}
         isLoading={isLoading}

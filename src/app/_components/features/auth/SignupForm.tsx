@@ -13,6 +13,8 @@ import Image from 'next/image';
 
 interface AuthFormProps {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  handleGoogleSignup: () => void;
+  handleGithubSignup: () => void;
   signupFormData: {
     image: string;
     email: string;
@@ -45,6 +47,8 @@ const signupSchema = z
 
 export function SignupForm({
   handleSubmit,
+  handleGoogleSignup,
+  handleGithubSignup,
   signupFormData,
   setSignupFormData,
   isLoading,
@@ -84,6 +88,14 @@ export function SignupForm({
 
     setFormErrors({});
     handleSubmit(e);
+  };
+
+  const handleGoogleSignupButtonClick = () => {
+    handleGoogleSignup();
+  };
+
+  const handleGithubSignupButtonClick = () => {
+    handleGithubSignup();
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -318,6 +330,7 @@ export function SignupForm({
           variant="outline"
           type="button"
           className="w-full"
+          onClick={handleGoogleSignupButtonClick}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -347,6 +360,7 @@ export function SignupForm({
           variant="outline"
           type="button"
           className="w-full"
+          onClick={handleGithubSignupButtonClick}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

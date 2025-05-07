@@ -51,9 +51,57 @@ export default function LoginPage() {
     setIsLoading(false);
   };
 
+  const handleGoogleLogin = async () => {
+    setIsLoading(true);
+    const { data, error } = await signIn.social({
+      provider: 'google',
+    });
+
+    if (error) {
+      console.log(error);
+      if (error.status === 403) {
+        router.push(`/verify-email?email=${loginFormData.email}`);
+        triggerToast('Please verify your email to continue', 'success');
+        return;
+      }
+      triggerToast(error.message || 'Something went wrong', 'error');
+    }
+
+    if (data) {
+      triggerToast('Login successful', 'success');
+      router.push('/dashboard');
+    }
+    setIsLoading(false);
+  };
+
+  const handleGithubLogin = async () => {
+    setIsLoading(true);
+    const { data, error } = await signIn.social({
+      provider: 'github',
+    });
+
+    if (error) {
+      console.log(error);
+      if (error.status === 403) {
+        router.push(`/verify-email?email=${loginFormData.email}`);
+        triggerToast('Please verify your email to continue', 'success');
+        return;
+      }
+      triggerToast(error.message || 'Something went wrong', 'error');
+    }
+
+    if (data) {
+      triggerToast('Login successful', 'success');
+      router.push('/dashboard');
+    }
+    setIsLoading(false);
+  };
+
   return (
     <Login
       handleLogin={handleLogin}
+      handleGoogleLogin={handleGoogleLogin}
+      handleGithubLogin={handleGithubLogin}
       loginFormData={loginFormData}
       setLoginFormData={setLoginFormData}
       isLoading={isLoading}

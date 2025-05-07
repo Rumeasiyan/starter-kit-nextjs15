@@ -3,6 +3,9 @@ import { AuthLayout } from '@/app/_components/layouts/auth/AuthLayout';
 import { AppLogo } from '@/app/_components/icons/AppLogo';
 
 interface SignupProps {
+  handleSignup: () => void;
+  handleGoogleSignup: () => void;
+  handleGithubSignup: () => void;
   signupFormData: {
     image: string;
     email: string;
@@ -11,13 +14,14 @@ interface SignupProps {
     confirmPassword: string;
   };
   setSignupFormData: (formData: SignupProps['signupFormData']) => void;
-  handleSignup: () => void;
   isLoading: boolean;
   setIsLoading: (isLoading: boolean) => void;
 }
 
 export default function Signup({
   handleSignup,
+  handleGoogleSignup,
+  handleGithubSignup,
   signupFormData,
   setSignupFormData,
   isLoading,
@@ -31,6 +35,8 @@ export default function Signup({
     >
       <SignupForm
         handleSubmit={handleSignup}
+        handleGoogleSignup={handleGoogleSignup}
+        handleGithubSignup={handleGithubSignup}
         signupFormData={signupFormData}
         setSignupFormData={setSignupFormData}
         isLoading={isLoading}

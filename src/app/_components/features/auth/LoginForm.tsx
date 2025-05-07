@@ -12,6 +12,8 @@ import { useEffect, useState } from 'react';
 
 interface LoginFormProps {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  handleGoogleLogin: () => void;
+  handleGithubLogin: () => void;
   loginFormData: {
     email: string;
     password: string;
@@ -28,6 +30,8 @@ const loginSchema = z.object({
 
 export function LoginForm({
   handleSubmit,
+  handleGoogleLogin,
+  handleGithubLogin,
   loginFormData,
   setLoginFormData,
   isLoading,
@@ -61,6 +65,14 @@ export function LoginForm({
 
     setFormErrors({});
     handleSubmit(e);
+  };
+
+  const handleGoogleLoginButtonClick = () => {
+    handleGoogleLogin();
+  };
+
+  const handleGithubLoginButtonClick = () => {
+    handleGithubLogin();
   };
 
   return (
@@ -174,6 +186,7 @@ export function LoginForm({
           variant="outline"
           type="button"
           className="w-full"
+          onClick={handleGoogleLoginButtonClick}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -203,6 +216,7 @@ export function LoginForm({
           variant="outline"
           type="button"
           className="w-full"
+          onClick={handleGithubLoginButtonClick}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

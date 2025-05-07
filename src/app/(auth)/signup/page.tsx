@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { signUp, useSession } from '@/lib/auth/auth-client';
+import { signIn, signUp, useSession } from '@/lib/auth/auth-client';
 import Loading from '@/app/_components/global/Loading';
 import { triggerToast } from '@/app/helpers/triggerToast';
 
@@ -51,9 +51,47 @@ export default function SignupPage() {
     setIsLoading(false);
   };
 
+  const handleGoogleSignup = async () => {
+    setIsLoading(true);
+    const { data, error } = await signIn.social({
+      provider: 'google',
+    });
+
+    if (error) {
+      console.log(error);
+      triggerToast(error.message || 'Something went wrong', 'error');
+    }
+
+    if (data) {
+      triggerToast('Signup successful', 'success');
+      router.push(`/verify-email?email=${signupFormData.email}`);
+    }
+    setIsLoading(false);
+  };
+
+  const handleGithubSignup = async () => {
+    setIsLoading(true);
+    const { data, error } = await signIn.social({
+      provider: 'github',
+    });
+
+    if (error) {
+      console.log(error);
+      triggerToast(error.message || 'Something went wrong', 'error');
+    }
+
+    if (data) {
+      triggerToast('Signup successful', 'success');
+      router.push(`/verify-email?email=${signupFormData.email}`);
+    }
+    setIsLoading(false);
+  };
+
   return (
     <Signup
       handleSignup={handleSignup}
+      handleGoogleSignup={handleGoogleSignup}
+      handleGithubSignup={handleGithubSignup}
       signupFormData={signupFormData}
       setSignupFormData={setSignupFormData}
       isLoading={isLoading}
