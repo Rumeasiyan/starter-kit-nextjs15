@@ -96,6 +96,45 @@ The project includes pre-configured path aliases for easier imports:
 - `npm run format:check` - Check code formatting
 - `npm run typecheck` - Run TypeScript type checking
 
+### Prisma Commands
+
+- `npx prisma generate` - Generate Prisma Client
+- `npx prisma db push` - Push schema changes to database
+- `npx prisma db pull` - Pull database schema
+- `npx prisma migrate dev` - Create and apply migrations
+- `npx prisma migrate reset` - Reset database and apply migrations
+- `npx prisma studio` - Open Prisma Studio to view/edit data
+- `npx prisma seed` - Seed the database with initial data
+
+### Email Setup
+
+The application uses Nodemailer for sending emails. Configure the following environment variables in your `.env` file:
+
+```bash
+# Email Configuration
+EMAIL_SERVER_HOST=your-smtp-host
+EMAIL_SERVER_PORT=587
+EMAIL_SERVER_USER=your-smtp-username
+EMAIL_SERVER_PASSWORD=your-smtp-password
+EMAIL_FROM=your-verified-sender-email
+
+# Example for Gmail
+EMAIL_SERVER_HOST=smtp.gmail.com
+EMAIL_SERVER_PORT=587
+EMAIL_SERVER_USER=your-gmail@gmail.com
+EMAIL_SERVER_PASSWORD=your-app-specific-password
+EMAIL_FROM=your-gmail@gmail.com
+```
+
+For Gmail:
+
+1. Enable 2-Step Verification in your Google Account
+2. Generate an App Password:
+   - Go to Google Account > Security
+   - Under "2-Step Verification", click on "App passwords"
+   - Select "Mail" and your device
+   - Use the generated 16-character password as `EMAIL_SERVER_PASSWORD`
+
 ### Automatic Checks
 
 The following checks run automatically before commits:
