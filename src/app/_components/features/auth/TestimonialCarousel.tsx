@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { BiSolidQuoteLeft } from 'react-icons/bi';
 import { Button } from '@/app/_components/ui/button';
 
 interface Testimonial {
@@ -82,7 +83,9 @@ export function TestimonialCarousel() {
 
       <div className="relative z-10 flex h-full flex-col justify-end p-8 text-white">
         <div className="mb-8 max-w-md">
-          <div className="mb-4 text-5xl font-bold">&quot;</div>
+          <div className="mb-4 text-5xl font-bold">
+            <BiSolidQuoteLeft className="h-10 w-10" />
+          </div>
           <p className="mb-6 text-xl leading-relaxed font-medium transition-all duration-500">
             {currentTestimonial.quote}
           </p>
@@ -100,7 +103,7 @@ export function TestimonialCarousel() {
           <Button
             variant="outline"
             size="icon"
-            className="h-9 w-9 rounded-full border-white/20 bg-white/10 backdrop-blur-sm hover:bg-white/20"
+            className="h-9 w-9 rounded-full border-white/20 bg-white/10 backdrop-blur-sm hover:bg-white/20 hover:text-white"
             onClick={prevSlide}
           >
             <ChevronLeft className="h-5 w-5" />
@@ -109,7 +112,7 @@ export function TestimonialCarousel() {
           <Button
             variant="outline"
             size="icon"
-            className="h-9 w-9 rounded-full border-white/20 bg-white/10 backdrop-blur-sm hover:bg-white/20"
+            className="h-9 w-9 rounded-full border-white/20 bg-white/10 backdrop-blur-sm hover:bg-white/20 hover:text-white"
             onClick={nextSlide}
           >
             <ChevronRight className="h-5 w-5" />
