@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { BiSolidQuoteLeft } from 'react-icons/bi';
@@ -14,42 +14,28 @@ interface Testimonial {
   image: string;
 }
 
-const testimonials: Testimonial[] = [
-  {
-    quote:
-      'MoveEase has transformed how we handle logistics. The platform is intuitive and efficient.',
-    author: 'Sarah Johnson',
-    role: 'Operations Manager',
-    company: 'Global Shipping Co.',
-    image:
-      'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop',
-  },
-  {
-    quote:
-      "Since switching to MoveEase, we've reduced delivery times by 30% and improved customer satisfaction.",
-    author: 'Michael Chen',
-    role: 'Logistics Director',
-    company: 'FastTrack Delivery',
-    image:
-      'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop',
-  },
-  {
-    quote:
-      'The tracking features and real-time updates have made our supply chain management seamless.',
-    author: 'Emma Rodriguez',
-    role: 'Supply Chain Analyst',
-    company: 'Nexus Industries',
-    image:
-      'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop',
-  },
-];
-
 export function TestimonialCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
 
-  const nextSlide = () => {
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      const response = await fetch('/api/testimonials');
+      const data = await response.json();
+
+      const filteredTestimonials = data.filter(
+        (testimonial: Testimonial) => testimonial.image
+      );
+
+      setTestimonials(filteredTestimonials);
+    };
+
+    fetchTestimonials();
+  }, []);
+
+  const nextSlide = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
-  };
+  }, [testimonials.length]);
 
   const prevSlide = () => {
     setCurrentIndex(
@@ -64,7 +50,7 @@ export function TestimonialCarousel() {
     }, 8000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [nextSlide]);
 
   const currentTestimonial = testimonials[currentIndex];
 

@@ -41,30 +41,40 @@ const main = async () => {
         author: 'Alice Smith',
         role: 'Product Manager',
         company: 'TechCorp Inc.',
+        image:
+          'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop',
       },
       {
         quote: 'Absolutely fantastic experience, highly recommended!',
         author: 'Bob Johnson',
         role: 'CEO',
         company: 'Startup Hub',
+        image:
+          'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop',
       },
       {
         quote: 'A game-changer for team collaboration and productivity.',
         author: 'Carla Martinez',
         role: 'Team Lead',
         company: 'InnovateX Solutions',
+        image:
+          'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop',
       },
       {
         quote: 'The customer support is top-notch and very responsive.',
         author: 'David Lee',
         role: 'Support Engineer',
         company: 'HelpDesk Pro',
+        image:
+          'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop',
       },
       {
         quote: 'User-friendly interface paired with powerful features.',
         author: 'Eva Green',
         role: 'UX Designer',
         company: 'Creative Designs LLC',
+        image:
+          'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop',
       },
     ] as const;
 
@@ -150,6 +160,7 @@ const main = async () => {
             author: test.author,
             role: test.role,
             company: test.company,
+            image: test.image,
           },
         });
       } catch (error) {
