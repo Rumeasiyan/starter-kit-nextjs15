@@ -17,9 +17,9 @@ const main = async () => {
           //   password: 'Waltz0@Stegosaur2-Skincare1-Cranium5-Pants5',
           // },
           {
-            name: 'Zameeh',
-            email: 'jazameeh@gmail.com',
-            password: 'Waltz0@Stegosaur2-Skincare1-Cranium5-Pants5',
+            name: 'User 1',
+            email: 'user1@gmail.com',
+            password: 'Waltz0@123456',
           },
         ] as const,
       },

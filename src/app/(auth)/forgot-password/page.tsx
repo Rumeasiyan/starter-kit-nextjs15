@@ -33,7 +33,7 @@ export default function VerifyEmailPage() {
 
   useEffect(() => {
     if (data?.user) {
-      router.push('/');
+      router.push('/dashboard');
     }
   }, [data, router]);
 

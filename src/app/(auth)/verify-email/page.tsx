@@ -33,14 +33,14 @@ function VerifyEmailContent() {
   const handleVerifyEmail = useCallback(async () => {
     await sendVerificationEmail({
       email: email,
-      callbackURL: '/',
+      callbackURL: '/dashboard',
     });
     setIsVerificationEmailSent(true);
   }, [email]);
 
   useEffect(() => {
     if (data?.user) {
-      router.push('/');
+      router.push('/dashboard');
     }
     if (searchParams.get('email')) {
       setEmail(searchParams.get('email') || '');

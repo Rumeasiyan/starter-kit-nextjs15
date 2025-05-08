@@ -1,12 +1,19 @@
-interface DashboardPageProps {
-  signOut: () => void;
-}
+'use client';
 
-export default function DashboardPage({ signOut }: DashboardPageProps) {
+import { useSession } from '@/lib/auth/auth-client';
+
+export default function DashboardPage() {
+  const { data } = useSession();
+
   return (
-    <div className="gradient-background flex min-h-screen flex-col text-black">
-      this is dashboard page
-      <button onClick={() => signOut()}>Sign Out</button>
+    <div className="mx-auto max-w-6xl space-y-8">
+      <div className="space-y-2">
+        <h1 className="text-3xl font-bold">Dashboard</h1>
+        <p className="text-muted-foreground">
+          Welcome to your dashboard,{' '}
+          <span className="font-bold">{data?.user?.name}</span>
+        </p>
+      </div>
     </div>
   );
 }

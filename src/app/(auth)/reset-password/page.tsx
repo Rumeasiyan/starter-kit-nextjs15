@@ -58,10 +58,6 @@ function ResetPasswordContent() {
   }, [token, password, confirmPassword, router]);
 
   useEffect(() => {
-    if (data?.user) {
-      router.push('/');
-    }
-
     if (searchParams.get('token')) {
       setToken(searchParams.get('token') || '');
     } else {

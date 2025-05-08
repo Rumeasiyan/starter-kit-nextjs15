@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -75,6 +77,7 @@ export function TestimonialCarousel() {
           src={currentTestimonial.image || '/placeholder.svg'}
           alt={`${currentTestimonial.author} from ${currentTestimonial.company}`}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover opacity-90 transition-opacity duration-500"
           priority
         />

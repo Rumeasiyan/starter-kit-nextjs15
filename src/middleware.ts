@@ -15,8 +15,6 @@ export async function middleware(request: NextRequest) {
     }
   );
 
-  console.log('session', session);
-
   if (!session) {
     return NextResponse.redirect(new URL('/login', request.url));
   }
@@ -25,5 +23,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard'],
+  matcher: ['/dashboard', '/api/audit-logs', '/api/auth/check-credentials'],
 };
