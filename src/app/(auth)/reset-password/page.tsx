@@ -6,7 +6,7 @@ import Loading from '@/app/_components/global/Loading';
 import { useEffect, useState, useCallback } from 'react';
 import { resetPassword, useSession } from '@/lib/auth/auth-client';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { triggerToast } from '@/app/helpers/triggerToast';
+import { triggerToast } from '@/helpers/triggerToast';
 
 const ResetPassword = dynamic(
   () => import('@/app/(auth)/reset-password/ResetPasswordPage'),

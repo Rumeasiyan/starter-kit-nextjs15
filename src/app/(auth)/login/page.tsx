@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { signIn, useSession } from '@/lib/auth/auth-client';
 import Loading from '@/app/_components/global/Loading';
-import { triggerToast } from '@/app/helpers/triggerToast';
+import { triggerToast } from '@/helpers/triggerToast';
 
 const Login = dynamic(() => import('@/app/(auth)/login/LoginPage'), {
   loading: () => <Loading />,

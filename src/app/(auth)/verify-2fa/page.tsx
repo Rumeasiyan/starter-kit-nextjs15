@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 import Loading from '@/app/_components/global/Loading';
 import { useSession } from '@/lib/auth/auth-client';
-import { triggerToast } from '@/app/helpers/triggerToast';
+import { triggerToast } from '@/helpers/triggerToast';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
