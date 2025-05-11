@@ -2,13 +2,14 @@
 
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { signIn, signUp, useSession } from '@/lib/auth/auth-client';
 import Loading from '@/app/_components/global/Loading';
 import { triggerToast } from '@/helpers/triggerToast';
 
 const Signup = dynamic(() => import('@/app/(auth)/signup/SignupPage'), {
   loading: () => <Loading />,
+  ssr: false,
 });
 
 export default function SignupPage() {
@@ -88,14 +89,16 @@ export default function SignupPage() {
   };
 
   return (
-    <Signup
-      handleSignup={handleSignup}
-      handleGoogleSignup={handleGoogleSignup}
-      handleGithubSignup={handleGithubSignup}
-      signupFormData={signupFormData}
-      setSignupFormData={setSignupFormData}
-      isLoading={isLoading}
-      setIsLoading={setIsLoading}
-    />
+    <Suspense fallback={<Loading />}>
+      <Signup
+        handleSignup={handleSignup}
+        handleGoogleSignup={handleGoogleSignup}
+        handleGithubSignup={handleGithubSignup}
+        signupFormData={signupFormData}
+        setSignupFormData={setSignupFormData}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+      />
+    </Suspense>
   );
 }

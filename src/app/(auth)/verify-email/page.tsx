@@ -11,6 +11,7 @@ const VerifyEmail = dynamic(
   () => import('@/app/(auth)/verify-email/VerifyEmailPage'),
   {
     loading: () => <Loading />,
+    ssr: false,
   }
 );
 
@@ -49,11 +50,13 @@ function VerifyEmailContent() {
   }, [data, router, searchParams, handleVerifyEmail]);
 
   return (
-    <VerifyEmail
-      isVerificationEmailSent={isVerificationEmailSent}
-      handleVerifyEmail={handleVerifyEmail}
-      email={email}
-      setEmail={setEmail}
-    />
+    <Suspense fallback={<Loading />}>
+      <VerifyEmail
+        isVerificationEmailSent={isVerificationEmailSent}
+        handleVerifyEmail={handleVerifyEmail}
+        email={email}
+        setEmail={setEmail}
+      />
+    </Suspense>
   );
 }

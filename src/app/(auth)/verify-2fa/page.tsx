@@ -5,12 +5,13 @@ import Loading from '@/app/_components/global/Loading';
 import { useSession } from '@/lib/auth/auth-client';
 import { triggerToast } from '@/helpers/triggerToast';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 
 const TwoFactorAuth = dynamic(
   () => import('@/app/(auth)/verify-2fa/TwoFactorAuth'),
   {
     loading: () => <Loading />,
+    ssr: false,
   }
 );
 
@@ -30,5 +31,9 @@ export default function TwoFactorAuthPage() {
     return null;
   }
 
-  return <TwoFactorAuth email={data.user.email} />;
+  return (
+    <Suspense fallback={<Loading />}>
+      <TwoFactorAuth email={data.user.email} />
+    </Suspense>
+  );
 }

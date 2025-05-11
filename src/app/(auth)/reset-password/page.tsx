@@ -12,6 +12,7 @@ const ResetPassword = dynamic(
   () => import('@/app/(auth)/reset-password/ResetPasswordPage'),
   {
     loading: () => <Loading />,
+    ssr: false,
   }
 );
 
@@ -67,13 +68,15 @@ function ResetPasswordContent() {
   }, [data, router, searchParams]);
 
   return (
-    <ResetPassword
-      handleResetPassword={handleResetPassword}
-      password={password}
-      setPassword={setPassword}
-      confirmPassword={confirmPassword}
-      setConfirmPassword={setConfirmPassword}
-      isLoading={isLoading}
-    />
+    <Suspense fallback={<Loading />}>
+      <ResetPassword
+        handleResetPassword={handleResetPassword}
+        password={password}
+        setPassword={setPassword}
+        confirmPassword={confirmPassword}
+        setConfirmPassword={setConfirmPassword}
+        isLoading={isLoading}
+      />
+    </Suspense>
   );
 }

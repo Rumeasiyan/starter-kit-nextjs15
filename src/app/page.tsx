@@ -2,24 +2,28 @@
 
 import Loading from '@/app/_components/global/Loading';
 import dynamic from 'next/dynamic';
-import React from 'react';
+import React, { Suspense } from 'react';
 
 const PageContainer = dynamic(
   () => import('@/app/_components/layouts/PageContainer'),
   {
     loading: () => <Loading />,
+    ssr: false,
   }
 );
 
 const HomePage = dynamic(() => import('./HomePage'), {
   loading: () => <Loading />,
+  ssr: false,
 });
 
 const Page = () => {
   return (
-    <PageContainer>
-      <HomePage />
-    </PageContainer>
+    <Suspense fallback={<Loading />}>
+      <PageContainer>
+        <HomePage />
+      </PageContainer>
+    </Suspense>
   );
 };
 
