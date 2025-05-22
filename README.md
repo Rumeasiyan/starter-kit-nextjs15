@@ -11,6 +11,7 @@ A modern, feature-rich starter kit for Next.js 15 projects with TypeScript, ESLi
 - **Modern Project Structure**: Organized with best practices
 - **Code Quality Tools**: ESLint, Prettier, Husky
 - **Tailwind CSS**: Utility-first CSS framework with custom configuration
+- **Prisma ORM**: Type-safe database access with MySQL
 
 ## 📁 Project Structure
 
@@ -22,9 +23,19 @@ src/
 │   │   └── ui/          # shadcn/ui components
 │   ├── layout.tsx        # Root layout
 │   └── page.tsx          # Home page
-├── lib/                  # Utility functions and shared logic
-├── styles/              # Global styles and Tailwind CSS
-└── hooks/               # Custom React hooks
+├── configs/              # Configuration files
+│   ├── enums/           # Enumeration types
+│   ├── constants/       # Constant values
+│   ├── settings/        # Application settings
+│   └── types/           # TypeScript type definitions
+├── helpers/             # Helper functions and utilities
+├── lib/                 # Utility functions and shared logic
+├── store/              # State management
+├── styles/             # Global styles and Tailwind CSS
+├── hooks/              # Custom React hooks
+├── db.ts               # Database configuration
+└── middleware.ts       # Next.js middleware
+prisma/                  # Prisma schema and migrations
 ```
 
 ## 🚀 Development
@@ -33,19 +44,45 @@ src/
 
 - Node.js (Latest LTS version recommended)
 - npm or yarn
+- MySQL database
 
 ### Getting Started
 
-1. Clone the repository
+1. Clone the repository:
+
+   ```bash
+   git clone <repository-url>
+   cd <project-name>
+   ```
+
 2. Install dependencies:
+
    ```bash
    npm install
    # or
    yarn install
    ```
+
 3. Copy the environment file:
+
    ```bash
    cp .env.example .env
+   ```
+
+4. Update the `.env` file with your MySQL database connection:
+
+   ```
+   DATABASE_URL="mysql://user:password@localhost:3306/database_name"
+   ```
+
+5. Set up the database:
+
+   ```bash
+   # Create and apply database migrations
+   npx prisma migrate dev --name init
+
+   # Seed the database with initial data
+   npx prisma db seed
    ```
 
 ### Starting the Development Server
@@ -96,15 +133,17 @@ The project includes pre-configured path aliases for easier imports:
 - `npm run format:check` - Check code formatting
 - `npm run typecheck` - Run TypeScript type checking
 
-### Prisma Commands
+### Database Commands
 
 - `npx prisma generate` - Generate Prisma Client
 - `npx prisma db push` - Push schema changes to database
+- `npx prisma db push reset` - Reset schema changes to database
 - `npx prisma db pull` - Pull database schema
-- `npx prisma migrate dev` - Create and apply migrations
-- `npx prisma migrate reset` - Reset database and apply migrations
+- `npx prisma migrate dev` - Create and apply migrations (development)
+- `npx prisma migrate deploy` - Apply migrations (production)
+- `npx prisma migrate reset` - Reset database and reapply migrations
 - `npx prisma studio` - Open Prisma Studio to view/edit data
-- `npx prisma seed` - Seed the database with initial data
+- `npx prisma db seed` - Seed the database with initial data
 
 ### Email Setup
 
@@ -211,6 +250,8 @@ docs(readme): Update installation instructions
 - **commitlint**: Commit message linting
 - **TailwindCSS**: Utility-first CSS framework
 - **shadcn/ui**: Reusable UI components
+- **Prisma**: Type-safe ORM for database operations
+- **MySQL**: Database system
 
 ## 📝 License
 
